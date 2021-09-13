@@ -9,6 +9,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.ms.library.utils.D;
 import com.ms.library.utils.FileUtils;
 import com.ms.library.utils.media_data.MediaUtils;
 
@@ -112,9 +113,7 @@ public class Luban implements Handler.Callback {
             }
             return result;
         }
-        if (Log.isLoggable(TAG, Log.ERROR)) {
-            Log.e(TAG, "default disk cache dir is null");
-        }
+        D.e("default disk cache dir is null");
         return null;
     }
 

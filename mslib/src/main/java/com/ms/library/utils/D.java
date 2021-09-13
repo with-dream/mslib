@@ -8,6 +8,7 @@ import android.util.Log;
 
 public class D {
     public static void e(String str) {
-        Log.e("=====", str);
+        if (Config.OKHTTP_LOG)
+            Log.e("=====", str);
     }
 }

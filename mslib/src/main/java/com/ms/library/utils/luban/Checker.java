@@ -3,6 +3,8 @@ package com.ms.library.utils.luban;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.ms.library.utils.D;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -72,7 +74,7 @@ enum Checker {
             // Get the length and check if it is reasonable.
             length = pack(jpeg, offset, 2, false);
             if (length < 2 || offset + length > jpeg.length) {
-                Log.e(TAG, "Invalid length");
+                D.e("Invalid length");
                 return 0;
             }
 
@@ -95,7 +97,7 @@ enum Checker {
             // Identify the byte order.
             int tag = pack(jpeg, offset, 4, false);
             if (tag != 0x49492A00 && tag != 0x4D4D002A) {
-                Log.e(TAG, "Invalid byte order");
+                D.e("Invalid byte order");
                 return 0;
             }
             boolean littleEndian = (tag == 0x49492A00);
@@ -103,7 +105,7 @@ enum Checker {
             // Get the offset and check if it is reasonable.
             int count = pack(jpeg, offset + 4, 4, littleEndian) + 2;
             if (count < 10 || count > length) {
-                Log.e(TAG, "Invalid offset");
+                D.e("Invalid offset");
                 return 0;
             }
             offset += count;
@@ -126,7 +128,7 @@ enum Checker {
                         case 8:
                             return 270;
                     }
-                    Log.e(TAG, "Unsupported orientation");
+                    D.e("Unsupported orientation");
                     return 0;
                 }
                 offset += 12;
@@ -134,7 +136,7 @@ enum Checker {
             }
         }
 
-        Log.e(TAG, "Orientation not found");
+        D.e("Orientation not found");
         return 0;
     }
 
