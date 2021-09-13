@@ -5,5 +5,8 @@ package com.ms.library.utils;
  */
 
 public class Config {
-    public static final Boolean OKHTTP_LOG = false;
+    /**
+     * 是否打印okhttp日志
+     * */
+    public static Boolean OKHTTP_LOG = false;
 }
